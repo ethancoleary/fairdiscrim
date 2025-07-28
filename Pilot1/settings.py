@@ -1,11 +1,15 @@
 from os import environ
 
 SESSION_CONFIGS = [
-    # dict(
-    #     name='public_goods',
-    #     app_sequence=['public_goods'],
-    #     num_demo_participants=3,
-    # ),
+    dict(
+        name='Main',
+        app_sequence=[
+            #'intro',
+            'task',
+            'outro'
+        ],
+        num_demo_participants=5
+    )
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
@@ -17,7 +21,10 @@ SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=1.00, participation_fee=0.00, doc=""
 )
 
-PARTICIPANT_FIELDS = []
+PARTICIPANT_FIELDS = [
+    'investment',
+    'earning'
+]
 SESSION_FIELDS = []
 
 # ISO-639 code

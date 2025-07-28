@@ -1,0 +1,32 @@
+{{ block title }}
+    Your Task
+{{ endblock }}
+{{ block content }}
+
+Now you must complete a task which will determine your bonus payment.
+<br><br>
+For this task, you will be given 200 tokens, each worth 1 cent.
+You must decide how many of your tokens you wish to invest in the following lottery.
+<br><br>
+<center>
+    <u>Lottery</u><br><i>A fair die will be rolled. If the die lands on a 1 or a 2, you will
+    win two and half times the amount you bet.
+    If the die lands on a number higher than 2 (3, 4, 5 or 6), you will
+    lose the amount you bet.</i></center>
+<br><br>
+Your bonus payment will then be equal to the dollar worth of the number of
+tokens you do not invest in the lottery plus your payoff from the lottery. Half tokens are rounded up.
+<br><br>
+For example, suppose that you invest 100 tokens in the lottery.
+The computer will roll a fair die and if it lands on a 1 or a 2,
+then you will earn 250 (2.5 times your investment) tokens from the lottery.
+In this case, your bonus payment will be the dollar worth of the number of tokens you
+kept (100) plus your earning from the lottery (250) amounting to $3.50.
+If the computer rolls any other number then your investment returns nothing and
+your bonus payment is $1.00.
+<br><br>
+In the next page you must decide how many of your tokens you would like to invest.
+<br><br>
+    {{ next_button }}
+
+{{ endblock }}
