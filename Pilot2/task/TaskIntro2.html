@@ -1,0 +1,109 @@
+{{ block title }}
+    Your Task Instructions (2/2)
+{{ endblock }}
+{{ block content }}
+Now, we have recruited another group of individuals who have answered the same questionnaire and
+thus belong to either <span style="color: #30C34C; font-weight: bold;">Group A</span>  or
+<span style="color: #913CC6; font-weight: bold;">Group B</span>.
+Your task is to be an investment broker for two of these
+individuals: one of whom belongs to <span style="color: #30C34C; font-weight: bold;">Group A</span>
+(<span style="color: #30C34C; font-weight: bold;">Individual A</span>) and the other to
+<span style="color: #913CC6; font-weight: bold;">Group B</span>
+(<span style="color: #913CC6; font-weight: bold;">Individual B</span>).
+<br><br>
+Your task is to allocate a bank of 300 tokens to either
+<span style="color: #30C34C; font-weight: bold;">Individual A</span> or
+<span style="color: #913CC6; font-weight: bold;">Individual B</span>.
+You also have a bonus payment equal to 1 cent for every 5 tokens invested by your chosen individual.
+Bonus payments are rounded up to the nearest cent.
+<br><br>
+To help you make your decision, we will show you the average number of tokens invested by
+individuals from <span style="color: #30C34C; font-weight: bold;">Group A</span>  and
+<span style="color: #913CC6; font-weight: bold;">Group B</span> in the previous experiment.
+This is shown below.
+
+<br><br>
+<center>
+<div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+    <div style="width: 80%;">
+        <canvas id="groupBarChart"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('groupBarChart').getContext('2d');
+const data = {
+    labels: ['Group A', 'Group B'],
+    datasets: [{
+        label: '',
+        data: [100, 80],
+        backgroundColor: ['#30C34C', '#913CC6'], // Green for first bar, Purple for second bar
+        borderWidth: 1
+    }]
+};
+
+const options = {
+    indexAxis: 'x',
+    plugins: {
+        legend: { display: false },
+        tooltip: { enabled: false },
+        title: {
+            display: true,
+            text: 'Average Amount Invested by Group Affiliation',
+            font: {
+                size: 20,
+                weight: 'bold'
+            },
+            padding: {
+                top: 10,
+                bottom: 20
+            }
+        }
+    },
+    scales: {
+        y: {
+            min: 0,
+            max: 200,
+            ticks: {
+                stepSize: 25
+            }
+        }
+    },
+    animation: false
+};
+
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: options,
+    plugins: [{
+        id: 'bar-value-labels',
+        afterDatasetsDraw(chart, args, pluginOptions) {
+            const {ctx, data, chartArea, scales} = chart;
+            chart.data.datasets[0].data.forEach((value, i) => {
+                const meta = chart.getDatasetMeta(0);
+                const bar = meta.data[i];
+                ctx.save();
+                ctx.font = 'bold 16px Arial';
+                ctx.fillStyle = '#222';
+                ctx.textAlign = 'center';
+                ctx.fillText(
+                    value,
+                    bar.x,
+                    bar.y - 8
+                );
+                ctx.restore();
+            });
+        }
+    }]
+});
+</script>
+    </center>
+<br><br>
+Click next to move on. We will first test your understanding of the
+task and then you will choose which individual you wish to allocate the bank of 300 tokens to.
+<br><br>
+    {{ next_button }}
+
+{{ endblock }}

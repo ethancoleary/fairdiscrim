@@ -1,0 +1,45 @@
+{{ block title }}
+    Investment
+{{ endblock }}
+
+{{ block content }}
+Your task is now to give 300 tokens to either
+<span style="color: #30C34C; font-weight: bold;">Individual A</span> or
+<span style="color: #913CC6; font-weight: bold;">Individual B</span>.
+Recall that, based on their responses to our questionnaire on preferences,
+<span style="color: #30C34C; font-weight: bold;">Individual A</span> belongs to
+<span style="color: #30C34C; font-weight: bold;">Group A</span> and
+<span style="color: #913CC6; font-weight: bold;">Individual B</span> belongs to
+<span style="color: #913CC6; font-weight: bold;">Group B</span>.
+Also recall that in a previous experiment, individuals from
+<span style="color: #30C34C; font-weight: bold;">Group A</span> invested on average 100 tokens,
+while individuals from <span style="color: #913CC6; font-weight: bold;">Group B</span>
+invested on average 80 tokens.
+<br><br>
+Which of the two individuals would you like to give the 300 tokens to?
+You will earn a bonus payment equal to 1 cent for every 5 tokens your chosen
+individual invests in the lottery (rounded up to the nearest cent).
+<br><br><br>
+<center>
+<form method="post">
+
+    <table style="width: 50%; text-align: center;">
+        <tr>
+            <td>
+                <button type="submit" name="task" value="1">
+                    <span style="color: #30C34C; font-weight: bold;">Individual A</span>
+                </button>
+            </td>
+            <td>
+                <button type="submit" name="task" value="2">
+                    <span style="color: #913CC6; font-weight: bold;">Individual B</span>
+                </button>
+            </td>
+        </tr>
+    </table>
+</form>
+    </center>
+
+{{ endblock }}
+
+
