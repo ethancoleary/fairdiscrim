@@ -1,0 +1,17 @@
+{{ block title }}
+    Thank you
+{{ endblock }}
+
+{{ block content }}
+You will receive your comission for
+{{ if player.participant.task == 1 }} player A's {{endif}}
+{{ if player.participant.task == 2 }} player B's {{endif}}
+investment as a bonus payment via Prolific within one week.
+<br><br>
+Thank you for taking part in this experiment.
+Please click 'next' to be redirected back to Prolific.
+<br><br>
+    {{ next_button }}
+{{ endblock }}
+
+

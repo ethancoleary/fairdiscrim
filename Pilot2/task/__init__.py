@@ -98,7 +98,7 @@ class CompCheck(Page):
         elif values['check5'] != C.CORRECT_ANSWERS[4]:
             player.incorrect5 = 1
             return (
-                'Your answer to question 5 is wrong. There are two individuals and you can give 300 tokens to one and 0 to the other.')
+                'Your answer to question 5 is wrong. There are two individuals and you can give 300 tokens to one or the other.')
 
         elif values['check6'] != C.CORRECT_ANSWERS[5]:
             player.incorrect6 = 1
@@ -108,18 +108,18 @@ class CompCheck(Page):
 
 class Task(Page):
     form_model = 'player'
-    form_fields = ['investment']
+    form_fields = ['task']
 
     @staticmethod
     def before_next_page(player, timeout_happened):
         participant = player.participant
-        participant.investment = player.investment
+        participant.task = player.task
 
 
 
 page_sequence = [
                 TaskIntro1,
                 TaskIntro2,
-                CompCheck,
+                #CompCheck,
                 Task
                 ]

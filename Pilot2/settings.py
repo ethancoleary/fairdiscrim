@@ -5,7 +5,8 @@ SESSION_CONFIGS = [
         name='Main',
         app_sequence=[
             #'intro',
-            'task'
+            'task',
+            'outro'
         ],
         num_demo_participants=5
     )
@@ -20,7 +21,9 @@ SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=1.00, participation_fee=0.00, doc=""
 )
 
-PARTICIPANT_FIELDS = []
+PARTICIPANT_FIELDS = [
+    'task'
+]
 SESSION_FIELDS = []
 
 # ISO-639 code
