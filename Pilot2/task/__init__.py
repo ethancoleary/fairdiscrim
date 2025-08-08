@@ -120,6 +120,6 @@ class Task(Page):
 page_sequence = [
                 TaskIntro1,
                 TaskIntro2,
-                #CompCheck,
+                CompCheck,
                 Task
                 ]

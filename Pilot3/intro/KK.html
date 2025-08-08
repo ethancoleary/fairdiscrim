@@ -1,0 +1,26 @@
+{{ block title }}
+Welcome
+{{ endblock }}
+
+{{ block content }}
+
+Which of the following paintings do you prefer?
+<br><br>
+<form method="post">
+
+    <table style="width: 100%; text-align: center;">
+        <tr>
+            <td>
+                <img src="{{ static 'global/klee.jpg' }}" alt="Klee" style="height:300px;"/><br><br>
+                <button type="submit" name="KK" value="1">Choose this painting</button>
+            </td>
+            <td>
+                <img src="{{ static 'global/kandinsky.jpg' }}" alt="Kandinsky" style="height:300px;"/><br><br>
+                <button type="submit" name="KK" value="2">Choose this painting</button>
+            </td>
+        </tr>
+    </table>
+</form>
+{{ endblock }}
+
+

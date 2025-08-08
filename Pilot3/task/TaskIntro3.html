@@ -1,0 +1,21 @@
+{{ block title }}
+    Instructions (3/3)
+{{ endblock }}
+{{ block content }}
+<p>
+    Thank you for answering the questions correctly.
+An extra participation fee of $0.50 has been given to you.
+</p>
+<p>
+    The painting randomly selected was <b>painting {{ chosen }}</b>.
+<br><br>
+    Since you chose painting {{ yourpainting }} and your match chose painting {{ partnerpainting }},
+    you will receive an investment budget of {{ yourbudget }} tokens and your
+    match will receive an investment budget of {{ partnerbudget }} tokens.
+</p>
+<p>
+    Click 'next' to move on to make your investment decision.
+</p>
+    {{ next_button }}
+
+{{ endblock }}

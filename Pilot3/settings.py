@@ -4,8 +4,8 @@ SESSION_CONFIGS = [
     dict(
         name='Main',
         app_sequence=[
-            'intro',
-            'task',
+            #'intro',
+            #'task',
             'outro'
         ],
         num_demo_participants=5
@@ -22,7 +22,14 @@ SESSION_CONFIG_DEFAULTS = dict(
 )
 
 PARTICIPANT_FIELDS = [
-    'task'
+    'female',
+    'group',
+    'treatment',
+    'pilottreatment',
+    'receive',
+    'investment'
+    'die',
+    'steal'
 ]
 SESSION_FIELDS = []
 
@@ -40,4 +47,4 @@ ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
 
 DEMO_PAGE_INTRO_HTML = """ """
 
-SECRET_KEY = '2606799672786'
+SECRET_KEY = '5543930954479'

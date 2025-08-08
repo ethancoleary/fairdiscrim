@@ -1,0 +1,168 @@
+{{ block title }}
+    Before you make your investment decision
+{{ endblock }}
+{{ block content }}
+<p>
+You may choose to transfer your match’s extra participation fee to yourself.
+    Your match does not have this choice and cannot block your decision.
+</p>
+    {{ if player.pilottreatment == 1 }}
+<p>
+        The transfer will not cost you anything.
+        Recall that the extra participation fee does not influence either of your investment budgets.
+</p>
+<p>
+        Therefore, you must choose one of the below allocations of the extra participation fees:
+</p>
+<center>
+    <table border="1" cellpadding="15" cellspacing="0">
+  <tr>
+    <th></th>
+    <th>No Transfer</th>
+    <th>Transfer</th>
+  </tr>
+  <tr>
+    <td>You</td>
+    <td>$0.50</td>
+    <td>$1.00</td>
+  </tr>
+  <tr>
+    <td>Your match</td>
+    <td>$0.50</td>
+    <td>$0.00</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <input type="radio" name="transfer" value="0"> <br> Choose this option
+    </td>
+    <td>
+      <input type="radio" name="transfer" value="1"> <br> Choose this option
+    </td>
+  </tr>
+</table>
+</center>
+
+{{ endif }}
+
+    {{ if player.pilottreatment == 2 }}
+<p>
+        If you choose to make the transfer, it will cost you $0.25.
+        Recall that the extra participation fee does not influence either of your investment budgets.
+</p>
+<p>
+        Therefore, you must choose one of the below allocations of the extra participation fees:
+</p>
+<center>
+    <table border="1" cellpadding="15" cellspacing="0">
+  <tr>
+    <th></th>
+    <th>No Transfer</th>
+    <th>Transfer</th>
+  </tr>
+  <tr>
+    <td>You</td>
+    <td>$0.50</td>
+    <td>$0.75</td>
+  </tr>
+  <tr>
+    <td>Your match</td>
+    <td>$0.50</td>
+    <td>$0.00</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <input type="radio" name="transfer" value="0"> Choose this option
+    </td>
+    <td>
+      <input type="radio" name="transfer" value="1"> Choose this option
+    </td>
+  </tr>
+</table>
+</center>
+
+{{ endif }}
+
+    {{ if player.pilottreatment == 3 }}
+<p>
+        If you choose to make the transfer, it will cost you $0.50.
+        Recall that the extra participation fee does not influence either of your investment budgets.
+</p>
+<p>
+        Therefore, you must choose one of the below allocations of the extra participation fees:
+</p>
+<center>
+    <table border="1" cellpadding="15" cellspacing="0">
+  <tr>
+    <th></th>
+    <th>No Transfer</th>
+    <th>Transfer</th>
+  </tr>
+  <tr>
+    <td>You</td>
+    <td>$0.50</td>
+    <td>$0.50</td>
+  </tr>
+  <tr>
+    <td>Your match</td>
+    <td>$0.50</td>
+    <td>$0.00</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <input type="radio" name="transfer" value="0"> Choose this option
+    </td>
+    <td>
+      <input type="radio" name="transfer" value="1"> Choose this option
+    </td>
+  </tr>
+</table>
+</center>
+
+{{ endif }}
+
+    {{ if player.pilottreatment == 4 }}
+<p>
+        If you choose to make the transfer, it will cost you $0.75.
+        Recall that the extra participation fee does not influence either of your investment budgets.
+</p>
+<p>
+        Therefore, you must choose one of the below allocations of the extra participation fees:
+</p>
+<center>
+    <table border="1" cellpadding="15" cellspacing="0">
+  <tr>
+    <th></th>
+    <th>No Transfer</th>
+    <th>Transfer</th>
+  </tr>
+  <tr>
+    <td>You</td>
+    <td>$0.50</td>
+    <td>$0.25</td>
+  </tr>
+  <tr>
+    <td>Your match</td>
+    <td>$0.50</td>
+    <td>$0.00</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <input type="radio" name="transfer" value="0"> Choose this option
+    </td>
+    <td>
+      <input type="radio" name="transfer" value="1"> Choose this option
+    </td>
+  </tr>
+</table>
+</center>
+
+{{ endif }}
+<br><br>
+
+    {{ next_button }}
+
+{{ endblock }}

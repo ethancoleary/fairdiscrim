@@ -1,0 +1,41 @@
+{{ block title }}
+    Survey (5/5)
+{{ endblock }}
+
+{{ block content }}
+<p>Please answer the following questions.</p>
+
+<p>
+On a scale of 1 to 10, how willing are you to take risks in your life?
+</p>
+  <center>
+    <table style="width: 100%; border-collapse: collapse; table-layout: fixed; margin-bottom: 40px;">
+      <thead>
+        <tr>
+          {% for i in range(1, 11) %}
+          <th style="width: 10%; text-align: center; background-color: #f0f0f0; font-weight: normal;">
+            {{ i }}
+          </th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          {% for i in range(1, 11) %}
+          <td style="text-align: center;">
+            <input type="radio" name="risk" value="{{ i }}" {% if i == 1 %}required{% endif %}>
+          </td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+  </center>
+
+  <center>
+    {{ next_button }}
+  </center>
+
+</form>
+{{ endblock }}
+
+

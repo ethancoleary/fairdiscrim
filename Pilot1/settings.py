@@ -4,7 +4,7 @@ SESSION_CONFIGS = [
     dict(
         name='Main',
         app_sequence=[
-            #'intro',
+            'intro',
             'task',
             'outro'
         ],

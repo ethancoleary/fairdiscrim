@@ -35,7 +35,8 @@ class Results(Page):
         else:
             player.lottery = 0
 
-        earning = 200 - investment + math.ceil(player.lottery * 2.5 * investment)
+        kept = 200 - investment
+        earning = kept + math.ceil(player.lottery * 2.5 * investment)
         player.earning = earning
 
         if earning % 10 == 0:
@@ -44,6 +45,7 @@ class Results(Page):
             bonus = f"{earning/100}"
 
         return {
+            'kept': kept,
             'inv': investment,
             'die': die,
             'earning': earning,
@@ -51,7 +53,7 @@ class Results(Page):
 
         }
 
-    class Redirect(Page):
+class Redirect(Page):
         @staticmethod
         def js_vars(player):
             return dict(

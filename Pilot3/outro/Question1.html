@@ -1,0 +1,175 @@
+{{ block title }}
+    Survey (1/5)
+{{ endblock }}
+
+{{ block content }}
+<p>This is the final section of the experiment.</p>
+
+<p>
+    Please answer the following questions.
+</p>
+<br>
+<p>
+<form method="post">
+
+  <!-- Statement 1 -->
+  <div style="margin-bottom: 40px;">
+    <p style="font-weight: bold; margin-bottom: 8px;">
+      <strong>To what extent do you think that the previous scenario was fair?</strong>
+    </p>
+      <center>
+    <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
+      <thead>
+        <tr>
+          <th style="width: 12.5%; text-align: center; background-color: #f0f0f0; font-weight: normal;">Extremely Fair</th>
+          <th style="width: 12.5%; text-align: center; background-color: #f0f0f0; font-weight: normal;">Somewhat Fair</th>
+          <th style="width: 12.5%; text-align: center; background-color: #f0f0f0; font-weight: normal;">Slightly Fair</th>
+          <th style="width: 12.5%; text-align: center; background-color: #f0f0f0; font-weight: normal;">Neither Fair nor Unfair</th>
+          <th style="width: 12.5%; text-align: center; background-color: #f0f0f0; font-weight: normal;">Slightly Unfair</th>
+          <th style="width: 12.5%; text-align: center; background-color: #f0f0f0; font-weight: normal;">Somewhat Unfair</th>
+          <th style="width: 12.5%; text-align: center; background-color: #f0f0f0; font-weight: normal;">Extremely Unfair</th>
+          <th style="width: 12.5%; text-align: center; background-color: #f0f0f0; padding-left: 20px; font-weight: normal;">I don't know</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align:center;">
+            <input type="radio" name="fairscenario" value="1" required>
+          </td>
+          <td style="text-align:center;">
+            <input type="radio" name="fairscenario" value="2">
+          </td>
+          <td style="text-align:center;">
+            <input type="radio" name="fairscenario" value="3">
+          </td>
+          <td style="text-align:center;">
+            <input type="radio" name="fairscenario" value="4">
+          </td>
+          <td style="text-align:center;">
+            <input type="radio" name="fairscenario" value="5">
+          </td>
+          <td style="text-align:center;">
+            <input type="radio" name="fairscenario" value="6">
+          </td>
+          <td style="text-align:center;">
+            <input type="radio" name="fairscenario" value="7">
+          </td>
+          <td style="text-align:center; padding-left: 20px;">
+            <input type="radio" name="fairscenario" value="8">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+          </center>
+  </div>
+
+  <br><br>
+
+  <!-- Statement 1 -->
+  <div style="margin-bottom: 40px;">
+    <p style="font-weight: bold; margin-bottom: 8px;">
+      <strong>How would you have answered the above if groups were assigned according to gender
+        instead of your preferred painting i.e. your match got 300 tokens because they are
+        {{ if player.participant.female == 0 }} female. {{ endif }}
+        {{ if player.participant.female == 1 }} male. {{ endif }}</strong>
+    </p>
+      <center>
+    <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
+      <thead>
+        <tr>
+          <th style="width: 12.5%; text-align: center; background-color: #f0f0f0; font-weight: normal;">Extremely Fair</th>
+          <th style="width: 12.5%; text-align: center; background-color: #f0f0f0; font-weight: normal;">Somewhat Fair</th>
+          <th style="width: 12.5%; text-align: center; background-color: #f0f0f0; font-weight: normal;">Slightly Fair</th>
+          <th style="width: 12.5%; text-align: center; background-color: #f0f0f0; font-weight: normal;">Neither Fair nor Unfair</th>
+          <th style="width: 12.5%; text-align: center; background-color: #f0f0f0; font-weight: normal;">Slightly Unfair</th>
+          <th style="width: 12.5%; text-align: center; background-color: #f0f0f0; font-weight: normal;">Somewhat Unfair</th>
+          <th style="width: 12.5%; text-align: center; background-color: #f0f0f0; font-weight: normal;">Extremely Unfair</th>
+          <th style="width: 12.5%; text-align: center; background-color: #f0f0f0; padding-left: 20px; font-weight: normal;">I don't know</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align:center;">
+            <input type="radio" name="fairgender" value="1" required>
+          </td>
+          <td style="text-align:center;">
+            <input type="radio" name="fairgender" value="2">
+          </td>
+          <td style="text-align:center;">
+            <input type="radio" name="fairgender" value="3">
+          </td>
+          <td style="text-align:center;">
+            <input type="radio" name="fairgender" value="4">
+          </td>
+          <td style="text-align:center;">
+            <input type="radio" name="fairgender" value="5">
+          </td>
+          <td style="text-align:center;">
+            <input type="radio" name="fairgender" value="6">
+          </td>
+          <td style="text-align:center;">
+            <input type="radio" name="fairgender" value="7">
+          </td>
+          <td style="text-align:center; padding-left: 20px;">
+            <input type="radio" name="fairgender" value="8">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+          </center>
+  </div>
+ <br><br>
+  <div style="margin-bottom: 40px;">
+    <p style="font-weight: bold; margin-bottom: 8px;">
+      <strong>
+        How many tokens do you believe that your match invested in the lottery (out of 300)?
+      </strong>
+    </p>
+    <center>
+      <input
+        type="number"
+        name="matchinvest"
+        min="0"
+        max="300"
+        step="1"
+        required
+        style="width: 200px;"
+      >
+    </center>
+  </div>
+
+    <center>
+       <button type="submit">Submit</button>
+  </center>
+</form>
+<script>
+const matchInput = document.querySelector('input[name="matchinvest"]');
+const form = matchInput.closest('form');
+
+form.addEventListener('submit', function(event) {
+  const val = matchInput.value;
+  if (!val) {
+    alert("Please enter a value");
+    event.preventDefault();
+    return;
+  }
+
+  const num = Number(val);
+  if (!Number.isInteger(num)) {
+    alert("Please enter an integer value.");
+    event.preventDefault();
+    return;
+  }
+  if (num < 0 || num > 300) {
+    alert("Please enter a number between 0 and 300 inclusive.");
+    event.preventDefault();
+    return;
+  }
+});
+</script>
+</p>
+
+
+{{ endblock }}
+
+
