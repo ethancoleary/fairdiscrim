@@ -1,0 +1,51 @@
+{{ block title }}
+Please answer the following questions to ensure your understanding of the stage
+{{ endblock }}
+{{ block content }}
+<p>
+    <i>If you make a mistake, then you will receive a hint.
+    You will see one hint at a time corresponding to your first incorrect answer.</i>
+</p>
+
+1. Individuals from which group invested more on average?
+<br>
+<br>
+
+
+        {{ form.check1 }}
+
+
+<br>
+<br>
+2. How is your bonus payment related to the investment decisions of individuals A and B?
+<br>
+<br>
+
+        {{ form.check2 }}
+
+
+<br>
+<br>
+3. What is the expected return to investments in the lottery (in percentage)?
+<br>
+<br>
+
+
+        {{ form.check3 }}
+
+
+<br>
+<br>
+4. True or False: You only receive your commission if investments are successful.
+<br>
+<br>
+
+
+        {{ form.check4 }}
+
+
+<br>
+<br>
+
+    {{ next_button }}
+{{ endblock }}

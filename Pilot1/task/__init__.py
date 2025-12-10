@@ -1,4 +1,6 @@
 from otree.api import *
+import random
+import math
 
 
 doc = """
@@ -22,11 +24,12 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     investment = models.IntegerField(min=0,max=200)
-
+    slider_value = models.IntegerField(min=0, max=200, blank=True)
 
 # PAGES
 class TaskIntro(Page):
-    pass
+    form_model = 'player'
+    form_fields = ['slider_value']
 
 class Task(Page):
     form_model = 'player'
@@ -36,7 +39,7 @@ class Task(Page):
     def before_next_page(player, timeout_happened):
         participant = player.participant
         participant.investment = player.investment
-
+        participant.die = random.randint(1, 6)
 
 
 page_sequence = [

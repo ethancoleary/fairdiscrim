@@ -1,0 +1,115 @@
+{{ block title }}
+    Investment
+{{ endblock }}
+
+{{ block content }}
+<p>
+    Your task is now to allocate investment budgets to
+<span style="color: #006400; font-weight: bold;">individual A</span> and
+<span style="color: #640064; font-weight: bold;">individual B</span>.
+You must choose one individual to give 300 tokens to and the other will receive 100 tokens.
+ They will then choose how much of this budget to invest in the lottery.<br><br>
+  <b>You will earn a commission of 1 cent for every 5 tokens invested by the individual who you assign 300 tokens to.</b>
+  This means that the more invested by the individual who you give 300 tokens to, the more <b>you</b> earn in commission.
+</p>
+<p>
+Recall that, based on their responses to our questionnaire,
+<span style="color: #006400; font-weight: bold;">individual A</span>
+belongs to the <span style="color: #006400; font-weight: bold;">high investment group: group A</span>,
+and <span style="color: #640064; font-weight: bold;">individual B</span>
+belongs to the <span style="color: #640064; font-weight: bold;">low investment group: group B</span>.
+</p>
+<p>
+How would you like to allocate the investment budgets?
+</p>
+<form method="post" name="taskForm">
+  <style>
+    .allocation-table {
+      width: 80%;
+      margin: 0 auto;
+      border-collapse: separate;
+      border-spacing: 24px 0px; /* horizontal gap:30px, vertical gap:10px */
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      text-align: center;
+    }
+    .allocation-table td, .allocation-table th {
+      padding: 2px 10px;
+      border: 1px solid #cccccc;
+    }
+    .allocation-table tbody tr:nth-child(2) td {
+      background-color: rgba(0, 100, 0, 0.1);
+    }
+    .allocation-table tbody tr:nth-child(3) td {
+      background-color: rgba(100, 0, 100, 0.1);
+    }
+    /* Remove borders in the bottom row */
+    .allocation-table tbody tr:nth-child(4) td {
+      border: none;
+    }
+    .allocation-table tbody tr:nth-child(1) td {
+      border: none;
+    }
+    /* Center buttons */
+    .allocation-table tbody tr:last-child td {
+      text-align: center;
+    }
+    .allocation-table button {
+      background-color: #4a90e2;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .allocation-table button:hover {
+      background-color: #357abd;
+    }
+  </style>
+
+  <table class="allocation-table">
+    <tbody>
+    <tr>
+      <td></td>
+      <td><b>Allocation 1</b></td>
+      <td><b>Allocation 2</b></td>
+    </tr>
+      <tr>
+        <td style="text-align: left; color: #006400;">
+          <b>Individual A</b><br>(from high investment group)
+        </td>
+        <td>300</td>
+        <td>100</td>
+      </tr>
+      <tr>
+        <td style="text-align: left; color: #640064;">
+          <b>Individual B</b><br>(from low investment group)
+        </td>
+        <td>100</td>
+        <td>300</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <button type="submit" name="task" value="1">
+            Choose this allocation
+          </button>
+        </td>
+        <td>
+          <button type="submit" name="task" value="2">
+            Choose this allocation
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+<br><br>
+<p>
+<i>Your decision may be extended to more individuals from the same groups. If so, then the average investments made by all of these individuals will
+  determine your commission.</i>
+</p>
+  {{ endblock }}
+
+

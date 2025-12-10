@@ -1,0 +1,197 @@
+{{ block title }}
+    Your Task Instructions
+{{ endblock }}
+{{ block content }}
+<style>
+  #dropdownButton {
+    background-color: #FAF8F6;
+    color: #000000;
+    font-size: 16px;
+    font-weight: 600;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    padding: 12px 25px;
+    cursor: pointer;
+    margin: 20px auto;
+    display: block;
+    transition: background-color 0.3s ease;
+  }
+
+  #dropdownButton:hover {
+    background-color: #F0EFED;
+  }
+
+  #investmentInfo {
+    display: none;
+    background-color: #ffffff;
+    border: 1px solid #d1d9e6;
+    border-radius: 8px;
+    padding: 20px 25px;
+    margin: 15px auto;
+    width: 75%;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  #investmentInfo p {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 17px;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  #PrevData table {
+    width: 75%;
+    margin: 0 auto 20px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  #PrevData thead th {
+    font-weight: bold;
+    font-size: 20px;
+    background-color: transparent;
+    padding: 12px 20px;
+    border-bottom: 2px solid #000000;
+  }
+
+  #PrevData th, #PrevData td {
+    padding: 12px 20px;
+    border: 1px solid #cccccc;
+  }
+
+    #lotteryContainer {
+    background-color: #f5f7fa;
+    border: 2px solid #d1d9e6;
+    border-radius: 12px;
+    padding: 20px 20px;
+    margin: 0 auto 30px auto;
+    width: 75%;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Subtle transparent row highlights */
+  #PrevData tbody tr:nth-child(1) td {
+    background-color: rgba(0, 100, 0, 0.1);
+  }
+  #PrevData tbody tr:nth-child(2) td {
+    background-color: rgba(100, 0, 100, 0.1);
+  }
+
+  /* Group the two columns with a left border */
+  #PrevData th:nth-child(2),
+  #PrevData td:nth-child(2),
+  #PrevData th:nth-child(3),
+  #PrevData td:nth-child(3) {
+    border-left: 3px solid #000000;
+  }
+</style>
+
+<p>
+  You have now been matched with two individuals,
+  <span style="color: #006400; font-weight: bold;">A</span> and
+  <span style="color: #640064; font-weight: bold;">B</span>.
+  Each individual answered a questionnaire and their answers assigned them to groups
+  <span style="color: #006400; font-weight: bold;">A</span> and
+  <span style="color: #640064; font-weight: bold;">B</span>, respectively.
+</p>
+
+<p>
+  These individuals will soon receive an investment budget of tokens, each worth 1 cent.
+  Then, they will decide how many of their tokens to invest in
+  <b>a lottery with an expected return to investment of 150%</b>.
+</p>
+
+<button id="dropdownButton" type="button" onclick="toggleDropdown()">
+  Click here to read the full instructions relating to the investment decision ▼
+</button>
+
+<div id="investmentInfo">
+  <h4>Instructions given to investors</h4>
+  <p>
+    You will soon be given tokens worth 1 cent each. Decide how many to invest
+    in the following lottery.
+  </p>
+  <p>
+   <center>
+<div id="lotteryContainer">
+    <u><strong>Lottery</strong></u><br>
+    <i>A fair six-sided die will be rolled. If the die lands on a 1 or a 2, you will
+    win two and half times the amount you invest.
+    If the die lands on a number higher than 2 (3, 4, 5 or 6), you will
+    lose the amount you invest.</i>
+</div>
+</center>
+
+  </p>
+  <p>
+    Your bonus payment equals the value of tokens you keep plus any lottery earnings.
+  </p>
+</div>
+
+<p>
+  One individual will receive an investment budget of 300 tokens and the other 100 tokens.
+  <b>Your task is to decide who receives which investment budget.</b><br><br>
+  <b>You will earn a commission of 1 cent per 5 tokens invested by the individual who you allocate 300 tokens to</b>.
+</p>
+
+<p>
+  From a prior experiment, those in groups <span style="color: #006400; font-weight: bold;">A</span> and
+    <span style="color: #640064; font-weight: bold;">B</span> with 200-token investment budgets invested:
+</p>
+
+<div id="PrevData">
+  <center>
+    <table>
+      <thead>
+        <tr>
+          <th>Group</th>
+          <th>Average Investment (% of budget)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center; color: #006400;">
+          <b>A</b><br>(High Investment Group)
+        </td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; color: #640064;">
+          <b>B</b><br>(Low Investment Group)
+        </td>
+          <td>21%</td>
+        </tr>
+      </tbody>
+    </table>
+  </center>
+</div>
+
+<p>
+  Click next to continue. You will first answer comprehension questions,
+  then allocate the investment budgets.
+</p>
+
+<br><br>
+{{ next_button }}
+
+<script>
+function toggleDropdown() {
+  var d = document.getElementById('investmentInfo');
+  var b = document.getElementById('dropdownButton');
+  if (d.style.display === 'none' || d.style.display === '') {
+    d.style.display = 'block';
+    b.innerHTML = 'Hide Possible Bonus Breakdown ▲';
+  } else {
+    d.style.display = 'none';
+    b.innerHTML = 'Show Possible Bonus Breakdown ▼';
+  }
+}
+</script>
+
+{{ endblock }}
