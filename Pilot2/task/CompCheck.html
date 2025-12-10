@@ -2,72 +2,50 @@
 Please answer the following questions to ensure your understanding of the stage
 {{ endblock }}
 {{ block content }}
+<p>
+    <i>If you make a mistake, then you will receive a hint.
+    You will see one hint at a time corresponding to your first incorrect answer.</i>
+</p>
 
-
-1. How many tokens did the participants in the <b>previous experiment</b> receive before
-making their investment decision?
+1. Individuals from which group invested more on average?
 <br>
 <br>
-<center>
+
 
         {{ form.check1 }}
 
-    </center>
+
 <br>
 <br>
-2. What is the probability that the investment in the lottery returns <b>nothing</b>?
+2. How is your bonus payment related to the investment decisions of individuals A and B?
 <br>
 <br>
-<center>
 
         {{ form.check2 }}
 
-    </center>
+
 <br>
 <br>
-3. If the individual invested <b>all of their tokens</b> in the lottery and it was <b>successful</b>,
-how many tokens would be in their bonus payment pot?
+3. What is the expected return to investments in the lottery (in percentage)?
 <br>
 <br>
-<center>
+
 
         {{ form.check3 }}
 
-    </center>
+
 <br>
 <br>
-4. If the individual <b>did not invest any of their tokens</b> in the lottery,
-how many tokens would be in their bonus payment pot?
+4. True or False: You only receive your commission if investments are successful.
 <br>
 <br>
-<center>
+
 
         {{ form.check4 }}
 
-    </center>
+
 <br>
 <br>
 
-5. Which of the following is correct?
-<br>
-<br>
-<center>
-
-        {{ form.check5 }}
-
-    </center>
-<br>
-<br>
-
-6. Which of the following is correct?
-<br>
-<br>
-<center>
-
-        {{ form.check6 }}
-
-    </center>
-<br>
-<br>
     {{ next_button }}
 {{ endblock }}

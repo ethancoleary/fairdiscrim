@@ -4,11 +4,15 @@ SESSION_CONFIGS = [
     dict(
         name='Main',
         app_sequence=[
-            #'intro',
-            #'task',
+            'intro',
+            'task',
             'outro'
         ],
-        num_demo_participants=5
+        num_demo_participants=10,
+completionlinkfull  =
+       'https://app.prolific.com/submissions/complete?cc=CHXPJ2PR',
+completionlinkscreenout  =
+       'https://app.prolific.com/submissions/complete?cc=CE0YPA75',
     )
 ]
 
@@ -27,11 +31,27 @@ PARTICIPANT_FIELDS = [
     'treatment',
     'pilottreatment',
     'receive',
-    'investment'
+    'investment',
     'die',
-    'steal'
+    'steal',
+    'group_treatment_id',
+    'male'
 ]
 SESSION_FIELDS = []
+ROOMS = [
+    dict(
+        name='tee',
+        display_name='tee',
+        # participant_label_file='_rooms/your_study.txt',
+        # use_secure_urls=True,
+    ),
+    dict(
+        name='prol_tee',
+        display_name='prol_tee',
+        # participant_label_file='_rooms/your_study.txt',
+        # use_secure_urls=True,
+    ),
+]
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
@@ -43,7 +63,7 @@ USE_POINTS = True
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
-ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
+ADMIN_PASSWORD = 'bergen2025'
 
 DEMO_PAGE_INTRO_HTML = """ """
 

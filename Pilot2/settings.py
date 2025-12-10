@@ -8,7 +8,10 @@ SESSION_CONFIGS = [
             'task',
             'outro'
         ],
-        num_demo_participants=5
+        num_demo_participants=5,
+completionlinkfull  =
+       'https://app.prolific.com/submissions/complete?cc=C1HWDG9G',
+        # Additional settings if needed
     )
 ]
 
@@ -26,6 +29,21 @@ PARTICIPANT_FIELDS = [
 ]
 SESSION_FIELDS = []
 
+ROOMS = [
+    dict(
+        name='tee',
+        display_name='tee',
+        # participant_label_file='_rooms/your_study.txt',
+        # use_secure_urls=True,
+    ),
+    dict(
+        name='prol_tee',
+        display_name='prol_tee',
+        # participant_label_file='_rooms/your_study.txt',
+        # use_secure_urls=True,
+    ),
+]
+
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
 LANGUAGE_CODE = 'en'
@@ -36,7 +54,7 @@ USE_POINTS = True
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
-ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
+ADMIN_PASSWORD = "bergen2025"
 
 DEMO_PAGE_INTRO_HTML = """ """
 

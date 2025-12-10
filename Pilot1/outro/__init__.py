@@ -29,7 +29,7 @@ class Results(Page):
     @staticmethod
     def vars_for_template(player):
         investment = player.participant.investment
-        die = random.randint(1, 6)
+        die = player.participant.die
         if die < 3 :
             player.lottery = 1
         else:
