@@ -142,17 +142,24 @@
 </style>
 
 <p>
-   <!--  {{ if player.participant.group == 1 }}You chose <b>painting A</b> and so are <b>a member of Group A</b>.
+    {{ if player.participant.treatment < 4 }}
+
+    {{ if player.participant.group == 1 }}You chose <b>painting A</b> and so are <b>a member of Group A</b>.
 You have been matched with an individual who chose <b>painting B</b> and is therefore <b>a member of Group B</b>:{{endif}}
-{{ if player.participant.group == 2 }}You chose painting B and so are a member of Group B.
+{{ if player.participant.group == 2 }}You chose <b>painting B</b> and so are a member of Group B.
 You have been matched with an individual who chose painting A and is therefore a member of Group A:{{endif}}
-we will refer to this individual as your <i>match</i>. -->
+we will refer to this individual as your <i>match</i>.
+
+    {{ endif }}
+    {{ if player.participant.treatment > 3 }}
 
        {{ if player.participant.group == 1 }}You are a male and are therefore <b>a member of the male group</b>.
 You have been matched with an individual who is a female and is therefore <b>a member of the female group</b>:{{endif}}
 {{ if player.participant.group == 2 }}You are a female and are therefore <b>a member of the female group</b>.
 You have been matched with an individual who is a male and is therefore <b>a member of the male group</b>:{{endif}}
 we will refer to this individual as your <i>match</i>.
+
+    {{ endif }}
 </p>
 <br>
 <h4>Investment Instructions</h4>

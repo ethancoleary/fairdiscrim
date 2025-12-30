@@ -70,13 +70,13 @@ class TaskIntro1(Page):
     form_fields = ['slider_value']
 
     @staticmethod
-    def before_next_page(player, timeout_happened):
-        treatment = random.randint(1,2)
-        if treatment == 1:
-            player.treatment = 1
-        else:
-            player.treatment = 3
+    def vars_for_template(player):
+        treatment = player.participant.treatment
 
+        if treatment < 4:
+            player.participant.group = player.participant.painting
+        elif treatment > 3:
+            player.participant.group = player.participant.gender
 
 class TaskIntro2(Page):
     pass

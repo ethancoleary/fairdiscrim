@@ -1,6 +1,6 @@
 from otree.api import *
 import random
-
+import copy
 
 doc = """
 Stage 1 Pilot
@@ -11,12 +11,27 @@ class C(BaseConstants):
     NAME_IN_URL = 'intro'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
-    MAX_KLEE_TREAT = 0
-    MAX_KANDINSKY_TREAT = 100
+    Quotas = {
+        'T1_Klee': 1,
+        'T1_Kand': 1,
+        'T2_Klee': 1,
+        'T2_Kand': 1,
+        'T3_Klee': 1,
+        'T3_Kand': 1,
+        'T4_Male': 1,
+        'T4_Female': 1,
+        'T5_Male': 1,
+        'T5_Female': 1
+    }
 
 
 class Subsession(BaseSubsession):
     pass
+
+def creating_session(subsession):
+    # Make a mutable copy of quotas in session.vars so we can decrement. [web:14]
+    if 'quotas' not in subsession.session.vars:
+        subsession.session.vars['quotas'] = copy.deepcopy(C.Quotas)
 
 
 class Group(BaseGroup):
@@ -42,13 +57,19 @@ class Player(BasePlayer):
         ],
     )
     accepted = models.IntegerField()
-    treatment = models.IntegerField(initial=1)  # Treatment 1 is random, 2 is computer discrim and 3 is human discrim.
+    treatment = models.IntegerField(initial=0)
+    temp_treatment = models.IntegerField(initial=0)
     die = models.IntegerField()
     invest = models.IntegerField()
     earnings = models.IntegerField()
     lottery = models.IntegerField()
 
-
+def decrement_quota(session, key):
+    quotas = session.vars['quotas']
+    if quotas.get(key, 0) <= 0:
+        return False
+    quotas[key] -= 1
+    return True
 
 # PAGES
 class Intro(Page):
@@ -68,49 +89,122 @@ class PDetails(Page):
 
     @staticmethod
     def before_next_page(player, timeout_happened):
-        participant = player.participant
+        session = player.session
+        quotas = session.vars['quotas']
 
-        if player.gender == 2:
-            participant.male = 1
-            participant.group = 1
-        else:
-            participant.male = 0
-            participant.group = 2
-
-
-
+        # Screen out non-binary / prefer not to say
         if player.gender > 2:
             player.accepted = 0
+            player.treatment = 0
+            return
+
+        player.participant.gender  = player.gender
+
+        # Gender-specific keys
+        if player.gender == 2:
+            gender_key_T4 = 'T4_Male'
+            gender_key_T5 = 'T5_Male'
         else:
-            player.accepted = 1
+            gender_key_T4 = 'T4_Female'
+            gender_key_T5 = 'T5_Female'
+
+        # Build list of candidate temp treatments
+        candidate_treatments = []
+
+        # T4/T5 based on gender quotas
+        if quotas.get(gender_key_T4, 0) > 0:
+            candidate_treatments.append(4)
+        if quotas.get(gender_key_T5, 0) > 0:
+            candidate_treatments.append(5)
+
+        # T1–T3: We check if there is *any* remaining capacity in that treatment
+        # (regardless of painting) for now. Painting-specific quotas will be enforced in KK.
+        for t in [1, 2, 3]:
+            # if either Klee or Kand quota is positive, keep this treatment as candidate
+            if quotas.get(f'T{t}_Klee', 0) > 0 or quotas.get(f'T{t}_Kand', 0) > 0:
+                candidate_treatments.append(t)
+
+        if not candidate_treatments:
+            # no available quota anywhere -> screen out
+            player.accepted = 0
+            player.treatment = 0
+            return
+
+        # Randomly choose a temp treatment from feasible ones
+        temp_treat = random.choice(candidate_treatments)
+        player.temp_treatment = temp_treat
+
+        # If temp_treatment is T4 or T5, finalize immediately and decrement gender quota
+        if temp_treat == 4:
+            key = gender_key_T4
+            if not decrement_quota(session, key):
+                # no quota after all -> screen out
+                player.accepted = 0
+                player.treatment = 0
+            else:
+                player.treatment = 4
+                player.accepted = 1
+                player.participant.treatment = 4
+        elif temp_treat == 5:
+            key = gender_key_T5
+            if not decrement_quota(session, key):
+                player.accepted = 0
+                player.treatment = 0
+            else:
+                player.treatment = 5
+                player.accepted = 1
+                player.participant.treatment = 5
+        else:
+            # T1–T3: treatment only finalized after KK (painting choice).
+            player.accepted = 1  # still “in” for now
+
 
 class KK(Page):
     form_model = 'player'
     form_fields = ['KK']
 
     @staticmethod
+    def is_displayed(player):
+        # Show only if: not screened out, and temp_treatment in {1,2,3}
+        return player.accepted == 1 and player.treatment == 0 and player.temp_treatment in [1, 2, 3]
+
+    @staticmethod
     def before_next_page(player, timeout_happened):
-        participant = player.participant
-        participant.group = player.KK
-        if player.gender == 1:
-            participant.female = 1
+        session = player.session
+        quotas = session.vars['quotas']
+
+        player.participant.painting = player.KK
+
+        # Determine painting key for quotas
+        if player.KK == 1:
+            painting_suffix = 'Klee'
         else:
-            participant.female = 0
+            painting_suffix = 'Kand'
 
-        all_players = player.subsession.get_players()
-        admitted_klee = len([p for p in all_players if p.field_maybe_none('KK') == 1])
+        # Find which of T1–T3 still have capacity for this painting
+        available_treatments = []
+        for t in [1, 2, 3]:
+            key = f'T{t}_{painting_suffix}'
+            if quotas.get(key, 0) > 0:
+                available_treatments.append((t, key))
 
-        admitted_kand = len([p for p in all_players if p.field_maybe_none('KK') == 2])
-
-        remaining_spaces_klee = C.MAX_KLEE_TREAT - admitted_klee
-        remaining_spaces_kand = C.MAX_KANDINSKY_TREAT - admitted_kand
-
-        if player.KK == 1 and remaining_spaces_klee >= 0:
-            player.accepted = 1
-        elif player.KK == 2 and remaining_spaces_kand >= 0:
-            player.accepted = 1
-        else:
+        if not available_treatments:
+            # No quota left for this painting in T1–T3 -> screen out
             player.accepted = 0
+            player.treatment = 0
+            return
+
+        # Randomly select one of the treatments that has quota for this painting
+        t, key = random.choice(available_treatments)
+        success = decrement_quota(session, key)
+        if not success:
+            # Extremely rare race condition; just screen out to be safe
+            player.accepted = 0
+            player.treatment = 0
+        else:
+            player.treatment = t
+            player.accepted = 1
+            player.participant.treatment = t
 
 class InvestIntro(Page):
 
@@ -176,7 +270,7 @@ class Redirect(Page):
 page_sequence = [
                 Intro,
                 PDetails,
-                 #KK,
+                KK,
                 InvestIntro,
                 Invest,
                 Screen,

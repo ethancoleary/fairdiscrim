@@ -28,8 +28,9 @@ SESSION_CONFIG_DEFAULTS = dict(
 PARTICIPANT_FIELDS = [
     'female',
     'group',
+    'gender',
     'treatment',
-    'pilottreatment',
+    'painting',
     'receive',
     'investment',
     'die',
